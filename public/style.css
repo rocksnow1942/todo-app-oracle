@@ -11,6 +11,11 @@ body{
     border-radius: 10px;
     box-shadow: 5px 10px 10px #454b48;
 }
+img{
+    max-width: 750px ;
+    border-radius: 10px;
+    margin: auto;
+}
 form{
     margin-top: 2rem;
 }
@@ -20,7 +25,7 @@ form{
     justify-content: center;
 }
 .inpt{
-    border-radius: 15px;
+    border-radius: 10px;
     outline:none;
     background-color: #d9f5ec;
 }
@@ -29,11 +34,12 @@ form{
     cursor: pointer;
     font-weight:bolder;
     outline: none;
-    border-radius: 15px;
-    background-color: #0073df;
+    border-radius: 0px 10px 10px 0px;
+    width: 90px;
+    background-color: #8cbeec;
 }
 .add-btn:hover{
-    background-color: #1f2eca;
+    background-color: #a5d3fe;
 }
 .inner li{
     list-style: none;
@@ -47,3 +53,17 @@ form{
     justify-content: space-around;
 }
 
+.inner li span{
+    width: 85%;
+}
+.inner li a {
+  align-self: center;
+}
+
+.del{
+  color: #9d0808;
+}
+
+.del:hover{
+    color: #ff0000;
+}
