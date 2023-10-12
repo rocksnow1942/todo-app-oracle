@@ -11,7 +11,7 @@ const connect = async () =>
   await oracledb.getConnection({
     user: process.env.DB_USER || "system",
     password: process.env.DB_PASSWORD || "password",
-    connectString: "localhost/FREEPDB1",
+    connectString: "localhost:1521",
   });
 
 var app = express();
