@@ -29,9 +29,9 @@
                 <% for(var i=0; i<todoList.length; i++){ %>
                     <li>
                         <input type="checkbox" class="checkbox">
-                       <%= todoList[i].name %>
+                       <%= todoList[i].TASK %>
                        
-                        <a href="/delete/<%= todoList[i].id %> " class="del"> 
+                        <a href="/delete/<%= todoList[i].ID %> " class="del"> 
                             <i class="fa fa-trash" aria-hidden="true" style="font-size:20px;color:black;"></i>
                         </a>
                        

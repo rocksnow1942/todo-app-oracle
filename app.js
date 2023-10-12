@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //routes
 app.get("/", async (req, res) => {
   const connection = await connect();
-  const todoList = await connection.execute("SELECT * FROM todo");
+  const { rows: todoList } = await connection.execute("SELECT * FROM todo");
   res.render("index.ejs", { todoList });
   await connection.close();
   return null;
@@ -37,7 +37,11 @@ app.post("/newtodo", async (req, res) => {
   const task = req.body.task;
   const connection = await connect();
   // write task to database
-  await connection.execute("INSERT INTO todo VALUES (:task)", { task });
+  await connection.execute(
+    "INSERT INTO todo (task) VALUES (:task)",
+    { task },
+    { autoCommit: true }
+  );
   res.redirect("/");
   await connection.close();
   return null;
@@ -49,7 +53,11 @@ app.get("/delete/:id", async (req, res) => {
   console.log(req.params.id);
   const connection = await connect();
   //delete the task from database
-  await connection.execute("DELETE FROM todo WHERE id = :taskId", { taskId });
+  await connection.execute(
+    "DELETE FROM todo WHERE id = :taskId",
+    { taskId },
+    { autoCommit: true }
+  );
   res.redirect("/");
   await connection.close();
 });
@@ -60,7 +68,7 @@ app.get("*", (req, res) => {
 });
 
 // create https server
-const PORT = 443;
+const PORT = process.argv[2] || 443;
 https
   .createServer(
     {
