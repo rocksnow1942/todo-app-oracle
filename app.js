@@ -41,7 +41,7 @@ app.get("/", async (req, res) => {
 
 //route for adding new task
 app.post("/newtodo", async (req, res) => {
-  const task = req.body.task || "";
+  const task = req.body.task || " ";
   const connection = await connect();
   // write task to database
   await connection.execute(
@@ -57,7 +57,6 @@ app.post("/newtodo", async (req, res) => {
 //route to delete a task by id
 app.get("/delete/:id", async (req, res) => {
   const taskId = req.params.id; //get the id from the api
-  console.log(req.params.id);
   const connection = await connect();
   //delete the task from database
   await connection.execute(
