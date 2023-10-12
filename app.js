@@ -9,9 +9,9 @@ oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
 const connect = async () =>
   await oracledb.getConnection({
-    user: process.env.DB_USER || "system",
-    password: process.env.DB_PASSWORD || "password",
-    connectString: "localhost:1521",
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    connectString: process.env.DB_CONNECTION_STRING,
   });
 
 var app = express();
@@ -23,8 +23,15 @@ app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//log the request
+function logRequest(req) {
+  const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+  console.log(`Request from ${ip} for ${req.url}`);
+}
+
 //routes
 app.get("/", async (req, res) => {
+  logRequest(req);
   const connection = await connect();
   const { rows: todoList } = await connection.execute("SELECT * FROM todo");
   res.render("index.ejs", { todoList });
