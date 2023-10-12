@@ -34,7 +34,7 @@ app.get("/", async (req, res) => {
 
 //route for adding new task
 app.post("/newtodo", async (req, res) => {
-  const task = req.body.task;
+  const task = req.body.task || "";
   const connection = await connect();
   // write task to database
   await connection.execute(

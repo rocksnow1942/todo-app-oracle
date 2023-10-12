@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/style.css" type="text/css">
 
-    <title>Node To Do Application</title>
+    <title>QH-MES</title>
 </head>
 <body>
     <div class="container outer">
+        <img alt="construction🚧" src="/construction.png">
         <form id="form" class="col-lg-6 col-8 mx-auto" action="/newtodo" method="POST">
             <div class="input-group">
-                <input id="input" class="form-control inpt" placeholder="Enter todo list item" value="" name="task">
+                <input id="input" class="form-control inpt" placeholder="Add your wish here..." value="" name="task">
                 <span>
                     <button id="btn" type="submit" class="btn add-btn">Add</button>
                 </span>
@@ -23,18 +24,13 @@
         </form>
 
         <div class="container inner">
-            <ul id="list" class="list col-lg-6 col-8 mx-auto">
-                <!-- <li><input type="checkbox" class="checkbox">this is a todo item </li>
-                <li><input type="checkbox" class="checkbox">this is a todo item </li> -->
+            <ul id="list" class="list col-lg-6 col-8 mx-auto">                
                 <% for(var i=0; i<todoList.length; i++){ %>
                     <li>
-                        <input type="checkbox" class="checkbox">
-                       <%= todoList[i].TASK %>
-                       
+                       <%= todoList[i].TASK %>                       
                         <a href="/delete/<%= todoList[i].ID %> " class="del"> 
                             <i class="fa fa-trash" aria-hidden="true" style="font-size:20px;color:black;"></i>
-                        </a>
-                       
+                        </a>                       
                     </li>
                 <% } %>
 
